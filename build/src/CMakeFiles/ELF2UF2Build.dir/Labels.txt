@@ -1,0 +1,13 @@
+# Target labels
+ ELF2UF2Build
+# Source files and their labels
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/ELF2UF2Build
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/ELF2UF2Build.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/ELF2UF2Build-complete.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
