@@ -1,6 +1,8 @@
 /*
  * MQTTPingTask.h
  *
+ * Task agent to queue ping request and publush pong responses
+ *
  *  Created on: 14 Nov 2021
  *      Author: jondurrant
  */
@@ -13,6 +15,7 @@
 #include <message_buffer.h>
 #include <semphr.h>
 #include <stdbool.h>
+#include "MQTTConfig.h"
 #include "MQTTInterface.h"
 
 #define PINGBUFFER 250
@@ -20,11 +23,26 @@
 
 class MQTTPingTask {
 public:
+	/***
+	 * Constructor
+	 */
 	MQTTPingTask();
+
+	/***
+	 * Destructor
+	 */
 	virtual ~MQTTPingTask();
 
+	/***
+	 * Set the MQTT Interface
+	 * @param mi - MQTTIntercace, an MQTTAgent object
+	 */
 	void setInterface(MQTTInterface * mi);
 
+	/***
+	 * Set the response topic
+	 * @param topic = string
+	 */
 	void setPongTopic(char * topic);
 
 	/***
@@ -34,12 +52,22 @@ public:
 	void start(UBaseType_t priority = tskIDLE_PRIORITY);
 
 	/***
+	 * Stop the vtask
+	 */
+	void stop();
+
+	/***
 	 * Internal function used by FreeRTOS to run the task
 	 * @param pvParameters
 	 */
 	static void vTask( void * pvParameters );
 
-
+	/***
+	 * Add a ping request to the queue
+	 * @param payload
+	 * @param payloadLen
+	 * @return
+	 */
 	bool addPing(const void * payload, size_t payloadLen);
 
 protected:

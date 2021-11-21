@@ -5,35 +5,70 @@
  *      Author: jondurrant
  */
 
-#include "MQTTAgent.h"
-#include "MQTTDebug.h"
 #include <stdlib.h>
 
+#include "MQTTAgent.h"
+#include "MQTTTopicHelper.h"
 
-const char * MQTTAgent::WILLTOPICFORMAT = "TNG/%s/LC";
-const char * MQTTAgent::WILLPAYLOAD = "{'online':0}";
-const char * MQTTAgent::ONLINEPAYLOAD = "{'online':1}";
+const char * MQTTAgent::WILLPAYLOAD = "{\"online\":0}";
+const char * MQTTAgent::ONLINEPAYLOAD = "{\"online\":1}";
 
 
-
+/***
+	 * Constructor
+	 * @param rxBufSize - size of rx buffer to create
+	 * @param txBufSize - size of tx buffer to create
+	 */
 MQTTAgent::MQTTAgent(size_t rxBufSize, size_t txBufSize) {
 	xRxBufSize = rxBufSize;
 	xTxBufSize = txBufSize;
 }
 
+/***
+ * Destructor
+ */
 MQTTAgent::~MQTTAgent() {
-	// TODO Auto-generated destructor stub
+	if (pMQTTClient != NULL){
+		lwesp_mqtt_client_api_delete(pMQTTClient);
+	}
+
+	if (willTopic != NULL){
+		vPortFree(willTopic);
+		willTopic = NULL;
+	}
+
+}
+
+/***
+ * Stop task
+ * @return
+ */
+void MQTTAgent::stop(){
+	if (xHandle != NULL){
+		vTaskDelete(  xHandle );
+		xHandle = NULL;
+	}
+
+	if (pMQTTClient != NULL){
+		lwesp_mqtt_client_api_delete(pMQTTClient);
+		pMQTTClient = NULL;
+	}
 }
 
 
+/***
+* Initialise the object
+* @return
+*/
 bool MQTTAgent::init(){
 	pMQTTClient = lwesp_mqtt_client_api_new(xRxBufSize, xTxBufSize);
 	if (pMQTTClient == NULL) {
-		dbg("MQTTAgent::init mqtt  failed\n");
+		LogError( ("MQTTAgent::init mqtt  failed\n") );
 		return false;
 	} else {
-		dbg("MQTTAgent::init complete\n");
+		LogDebug( ("MQTTAgent::init complete\n") );
 	}
+
 	return true;
 }
 
@@ -54,7 +89,16 @@ void MQTTAgent::credentials(const char * user, const char * passwd, const char *
 	} else {
 		this->id = user;
 	}
-	dbg("MQTT Credentials Id=%s, usr=%s, pwd=%s\n", this->id, this->user, this->passwd);
+
+	if (willTopic == NULL){
+		willTopic = (char *)pvPortMalloc( MQTTTopicHelper::lenLifeCycleTopic(this->id));
+		if (willTopic != NULL){
+			MQTTTopicHelper::genLifeCycleTopic(willTopic, this->id);
+		} else {
+			LogError( ("Unable to allocate LC topic") );
+		}
+	}
+	//printf("MQTT Credentials Id=%s, usr=%s, pwd=%s\n", this->id, this->user, this->passwd);
 }
 
 /***
@@ -101,9 +145,11 @@ void MQTTAgent::start(UBaseType_t priority){
 	 }
  }
 
-
+/***
+* Run loop for the task
+*/
  void MQTTAgent::run(){
-	 dbg("MQTTAgent run\n");
+	 LogDebug( ("MQTTAgent run\n") );
 
 
 	 for(;;){
@@ -123,7 +169,8 @@ void MQTTAgent::start(UBaseType_t priority){
 			 break;
 		 }
 		 case MQTTRecon: {
-
+			 vTaskDelay(MQTT_RECON_DELAY);
+			 connState = MQTTConn;
 			 break;
 		 }
 		 case Online: {
@@ -139,8 +186,6 @@ void MQTTAgent::start(UBaseType_t priority){
 
 		 taskYIELD();
 	 }
-
-
 
  }
 
@@ -164,7 +209,7 @@ const char * MQTTAgent::getId(){
 bool MQTTAgent::pubToTopic(const char * topic, const void * payload, size_t payloadLen){
 
 	lwespr_t status;
-	dbg("Publish: %s:%.*s\n", topic, payloadLen, payload);
+	LogDebug( ("Publish to: %s \n", topic ));
 	status = lwesp_mqtt_client_api_publish(pMQTTClient, topic,
 			payload, payloadLen, LWESP_MQTT_QOS_AT_LEAST_ONCE, false);
 	return (status == lwespOK);
@@ -174,7 +219,8 @@ bool MQTTAgent::pubToTopic(const char * topic, const void * payload, size_t payl
 * Close connection
 */
 void MQTTAgent::close(){
-
+	connState = Offline;
+	lwesp_mqtt_client_api_close( pMQTTClient);
 }
 
 /***
@@ -191,21 +237,29 @@ void MQTTAgent::route(const char * topic, size_t topicLen, const void * payload,
 }
 
 
-
-
-
- MQTTRouter* MQTTAgent::getRouter()  {
+/***
+* Get the router object handling all received messages
+* @return
+*/
+MQTTRouter* MQTTAgent::getRouter()  {
 	return pRouter;
 }
 
+/***
+* Set the rotuer object
+* @param pRouter
+*/
 void MQTTAgent::setRouter( MQTTRouter *pRouter) {
 	this->pRouter = pRouter;
 }
 
+/***
+* Connect to server
+* @return
+*/
 bool MQTTAgent::mqttConn(){
 	lwesp_mqtt_conn_status_t conn_status;
 
-	sprintf(willTopic, WILLTOPICFORMAT, id);
 
 	xMqttClientInfo.id = id;
 	xMqttClientInfo.user = user;
@@ -219,17 +273,25 @@ bool MQTTAgent::mqttConn(){
 			target, port, &xMqttClientInfo);
 	if (conn_status == LWESP_MQTT_CONN_STATUS_ACCEPTED) {
 		connState = MQTTConned;
-		dbg("Connected and accepted!\r\n");
+		LogDebug( ("Connected and accepted!\r\n") );
 	} else {
 		connState = Offline;
-		dbg("Connect API response: %d\r\n", (int)conn_status);
+		//printf("MQTT Connect Failed: %d\r\n", (int)conn_status);
+		LogError( ("MQTT Connect Failed %d\n", (int)conn_status ));
 		return false;
 	}
 	return true;
 }
 
+
+/***
+* Subscribe to a topic, mesg will be sent to router object
+* @param topic
+* @param QoS
+* @return
+*/
 bool MQTTAgent::subToTopic(const char * topic, const uint8_t QoS){
-	dbg("Subscribe tp %s\n", topic);
+	LogDebug( ("Subscribe tp %s\n", topic) );
 
 	lwespr_t status;
 	lwesp_mqtt_qos_t q;
@@ -256,7 +318,10 @@ bool MQTTAgent::subToTopic(const char * topic, const uint8_t QoS){
 	return (status == lwespOK);
 }
 
-
+/***
+* Subscribe step on connection
+* @return
+*/
 bool MQTTAgent::mqttSub(){
 
 	if (pRouter != NULL){
@@ -266,25 +331,28 @@ bool MQTTAgent::mqttSub(){
 	return false;
 }
 
+/***
+* Handle Rec of a messahe
+* @return
+*/
 bool MQTTAgent::mqttRec(){
 	lwespr_t res;
 	lwesp_mqtt_client_api_buf_p buf;
 	res = lwesp_mqtt_client_api_receive(pMQTTClient, &buf, 5000);
 	if (res == lwespOK) {
 		if (buf != NULL) {
-			printf("Publish received!\r\n");
-			printf("Topic: %s, payload: %s\r\n", buf->topic, buf->payload);
+			//printf("Topic: %s, payload: %s\r\n", buf->topic, buf->payload);
 			pRouter->route(buf->topic, buf->topic_len,
 					buf->payload, buf->payload_len, this );
 			lwesp_mqtt_client_api_buf_free(buf);
 			buf = NULL;
 		}
 	} else if (res == lwespCLOSED) {
-		printf("MQTT connection closed!\r\n");
+		LogWarn( ("MQTT connection closed!\r\n") );
 		connState = Offline;
 		return false;
 	} else if (res == lwespTIMEOUT) {
-		printf("Timeout on MQTT receive function. Manually publishing.\r\n");
+		LogWarn( ("Timeout on MQTT receive function. Manually publishing.\r\n") );
 		pubToTopic(willTopic, ONLINEPAYLOAD, strlen(ONLINEPAYLOAD));
 	}
 	return true;

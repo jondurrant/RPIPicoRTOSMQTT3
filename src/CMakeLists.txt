@@ -1,11 +1,11 @@
 add_executable(${NAME}
         main.cpp
-        MQTTDebug.cpp
         MQTTAgent.cpp
         MQTTInterface.cpp
         MQTTRouter.cpp
         MQTTRouterPing.cpp
         MQTTPingTask.cpp
+        MQTTTopicHelper.cpp
         )
 
 # Pull in our pico_stdlib which pulls in commonly used features

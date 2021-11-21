@@ -138,6 +138,10 @@ portmacro.h
 
 ../lib/FreeRTOS-Kernel/include/list.h
 
+../lib/FreeRTOS-Kernel/include/message_buffer.h
+stream_buffer.h
+../lib/FreeRTOS-Kernel/include/stream_buffer.h
+
 ../lib/FreeRTOS-Kernel/include/mpu_wrappers.h
 
 ../lib/FreeRTOS-Kernel/include/portable.h
@@ -157,6 +161,8 @@ task.h
 ../lib/FreeRTOS-Kernel/include/semphr.h
 queue.h
 ../lib/FreeRTOS-Kernel/include/queue.h
+
+../lib/FreeRTOS-Kernel/include/stream_buffer.h
 
 ../lib/FreeRTOS-Kernel/include/task.h
 list.h
@@ -329,6 +335,18 @@ lwesp_sys_port.h
 ../lib/lwesp/lwesp/src/include/system/lwesp_sys_port.h
 
 ../src/port/FreeRTOS/FreeRTOSConfig.h
+
+../src/port/FreeRTOS/logging_levels.h
+
+../src/port/FreeRTOS/logging_stack.h
+logging_levels.h
+../src/port/FreeRTOS/logging_levels.h
+stdio.h
+-
+stdint.h
+-
+string.h
+-
 
 ../src/port/lwesp/lwesp_sys_port.h
 stdint.h
@@ -503,12 +521,12 @@ pico/stdio.h
 /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/pico/stdio.h
 
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.cpp
-MQTTAgent.h
-/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.h
-MQTTDebug.h
-/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.h
 stdlib.h
 -
+MQTTAgent.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.h
+MQTTTopicHelper.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.h
 
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.h
 FreeRTOS.h
@@ -517,12 +535,16 @@ lwesp/lwesp.h
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/lwesp/lwesp.h
 lwesp/apps/lwesp_mqtt_client_api.h
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/lwesp/apps/lwesp_mqtt_client_api.h
+MQTTConfig.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTConfig.h
 MQTTInterface.h
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.h
 MQTTRouter.h
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouter.h
 
-/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTConfig.h
+logging_stack.h
+-
 
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.h
 stdlib.h
@@ -530,9 +552,59 @@ stdlib.h
 pico/stdlib.h
 -
 
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.h
+stdlib.h
+-
+FreeRTOS.h
+-
+message_buffer.h
+-
+semphr.h
+-
+stdbool.h
+-
+MQTTConfig.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTConfig.h
+MQTTInterface.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.h
+
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouter.h
 MQTTInterface.h
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.h
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.cpp
+stdio.h
+-
+cstring
+-
+MQTTRouterPing.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.h
+MQTTTopicHelper.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.h
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.h
+MQTTConfig.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTConfig.h
+MQTTRouter.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouter.h
+MQTTPingTask.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.h
+MQTTInterface.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.h
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.cpp
+MQTTTopicHelper.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.h
+stdlib.h
+-
+stdio.h
+-
+cstring
+-
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.h
+stdlib.h
+-
 
 custom_inc/lwesp_opts.h
 

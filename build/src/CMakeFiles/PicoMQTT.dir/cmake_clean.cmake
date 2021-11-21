@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj"
-  "CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj"
   "CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj"
   "CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj"
   "CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj"
   "CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj"
+  "CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj"
   "CMakeFiles/PicoMQTT.dir/__/lib/FreeRTOS-Kernel/croutine.c.obj"
   "CMakeFiles/PicoMQTT.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj"
   "CMakeFiles/PicoMQTT.dir/__/lib/FreeRTOS-Kernel/list.c.obj"

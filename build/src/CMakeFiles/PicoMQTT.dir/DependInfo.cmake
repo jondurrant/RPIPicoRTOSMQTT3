@@ -325,11 +325,11 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj"
-  "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj"
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj"
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj"
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouter.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj"
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj"
+  "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj"
   "/home/piadmin/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/home/piadmin/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj"
   "/mnt/pidev/src/RPIPicoRTOSMQTT3/src/main.cpp" "/mnt/pidev/src/RPIPicoRTOSMQTT3/build/src/CMakeFiles/PicoMQTT.dir/main.cpp.obj"
   )

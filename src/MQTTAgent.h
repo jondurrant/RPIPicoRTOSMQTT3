@@ -12,19 +12,30 @@
 #include "lwesp/lwesp.h"
 #include "lwesp/apps/lwesp_mqtt_client_api.h"
 
+#include "MQTTConfig.h"
 #include "MQTTInterface.h"
 #include "MQTTRouter.h"
 
 
-#define MQTT_AGENT_NETWORK_BUFFER_SIZE 512
-#define TCP_BUFFER_SIZE 512
+#ifndef MQTT_RECON_DELAY
+#define MQTT_RECON_DELAY 3000
+#endif
 
 
 enum MQTTState {  Offline, MQTTConn, MQTTRecon, MQTTConned, Online};
 
 class MQTTAgent: public MQTTInterface {
 public:
+	/***
+	 * Constructor
+	 * @param rxBufSize - size of rx buffer to create
+	 * @param txBufSize - size of tx buffer to create
+	 */
 	MQTTAgent(size_t rxBufSize, size_t txBufSize);
+
+	/***
+	 * Destructor
+	 */
 	virtual ~MQTTAgent();
 
 	/***
@@ -51,6 +62,13 @@ public:
 	 *
 	 *  */
 	void start(UBaseType_t priority = tskIDLE_PRIORITY);
+
+	/***
+	 * Stop task
+	 * @return
+	 */
+	void stop();
+
 
 	/***
 	 * Returns the id of the client
@@ -80,40 +98,89 @@ public:
 	 */
 	virtual void route(const char * topic, size_t topicLen, const void * payload, size_t payloadLen);
 
-	 MQTTRouter* getRouter() ;
+	/***
+	 * Get the router object handling all received messages
+	 * @return
+	 */
+	MQTTRouter* getRouter() ;
 
+	/***
+	 * Set the rotuer object
+	 * @param pRouter
+	 */
 	void setRouter( MQTTRouter *pRouter = NULL);
 
 
+	/***
+	 * Subscribe to a topic, mesg will be sent to router object
+	 * @param topic
+	 * @param QoS
+	 * @return
+	 */
 	virtual bool subToTopic(const char * topic, const uint8_t QoS=0);
 
 
 private:
+	/***
+	 * Task object running to manage MQTT interface
+	 * @param pvParameters
+	 */
 	static void vTask( void * pvParameters );
+
+	/***
+	 * Initialise the object
+	 * @return
+	 */
 	bool init();
+
+	/***
+	 * Run loop for the task
+	 */
 	void run();
+
+	/***
+	 * Connect to server
+	 * @return
+	 */
 	bool mqttConn();
+
+	/***
+	 * Subscribe step on connection
+	 * @return
+	 */
 	bool mqttSub();
+
+	/***
+	 * Handle Rec of a messahe
+	 * @return
+	 */
 	bool mqttRec();
 
+	//MQTT Server details
 	const char * user;
 	const char * passwd;
 	const char * id;
 	const char * target = NULL;
 	lwesp_port_t port = 1883 ;
 	bool ssl = false;
+
+	//Router object used for message processing
 	MQTTRouter * pRouter = NULL;
 
+	//The task
 	TaskHandle_t xHandle = NULL;
 
+	// Current state of the connection for run loop
 	MQTTState connState = Offline;
 
-	static const char * WILLTOPICFORMAT;
-	char willTopic[20];
+	//Handling of the Will for connection
+	//static const char * WILLTOPICFORMAT;
+	char *willTopic = NULL;
 	static const char * WILLPAYLOAD;
 	static const char * ONLINEPAYLOAD;
 
-	lwesp_mqtt_client_api_p pMQTTClient;
+	// MQTT Client handles and buffer sizes
+	lwesp_mqtt_client_api_p pMQTTClient = NULL;
 	lwesp_mqtt_client_info_t xMqttClientInfo;
 	size_t xRxBufSize;
 	size_t xTxBufSize;

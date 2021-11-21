@@ -235,33 +235,6 @@ MQTTAgent.cpp.s:
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.s
 .PHONY : MQTTAgent.cpp.s
 
-MQTTDebug.obj: MQTTDebug.cpp.obj
-
-.PHONY : MQTTDebug.obj
-
-# target to build an object file
-MQTTDebug.cpp.obj:
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj
-.PHONY : MQTTDebug.cpp.obj
-
-MQTTDebug.i: MQTTDebug.cpp.i
-
-.PHONY : MQTTDebug.i
-
-# target to preprocess a source file
-MQTTDebug.cpp.i:
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.i
-.PHONY : MQTTDebug.cpp.i
-
-MQTTDebug.s: MQTTDebug.cpp.s
-
-.PHONY : MQTTDebug.s
-
-# target to generate assembly for a file
-MQTTDebug.cpp.s:
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.s
-.PHONY : MQTTDebug.cpp.s
-
 MQTTInterface.obj: MQTTInterface.cpp.obj
 
 .PHONY : MQTTInterface.obj
@@ -369,6 +342,33 @@ MQTTRouterPing.s: MQTTRouterPing.cpp.s
 MQTTRouterPing.cpp.s:
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.s
 .PHONY : MQTTRouterPing.cpp.s
+
+MQTTTopicHelper.obj: MQTTTopicHelper.cpp.obj
+
+.PHONY : MQTTTopicHelper.obj
+
+# target to build an object file
+MQTTTopicHelper.cpp.obj:
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj
+.PHONY : MQTTTopicHelper.cpp.obj
+
+MQTTTopicHelper.i: MQTTTopicHelper.cpp.i
+
+.PHONY : MQTTTopicHelper.i
+
+# target to preprocess a source file
+MQTTTopicHelper.cpp.i:
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.i
+.PHONY : MQTTTopicHelper.cpp.i
+
+MQTTTopicHelper.s: MQTTTopicHelper.cpp.s
+
+.PHONY : MQTTTopicHelper.s
+
+# target to generate assembly for a file
+MQTTTopicHelper.cpp.s:
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build && $(MAKE) -f src/CMakeFiles/PicoMQTT.dir/build.make src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.s
+.PHONY : MQTTTopicHelper.cpp.s
 
 __/lib/FreeRTOS-Kernel/croutine.obj: __/lib/FreeRTOS-Kernel/croutine.c.obj
 
@@ -3215,9 +3215,6 @@ help:
 	@echo "... MQTTAgent.obj"
 	@echo "... MQTTAgent.i"
 	@echo "... MQTTAgent.s"
-	@echo "... MQTTDebug.obj"
-	@echo "... MQTTDebug.i"
-	@echo "... MQTTDebug.s"
 	@echo "... MQTTInterface.obj"
 	@echo "... MQTTInterface.i"
 	@echo "... MQTTInterface.s"
@@ -3230,6 +3227,9 @@ help:
 	@echo "... MQTTRouterPing.obj"
 	@echo "... MQTTRouterPing.i"
 	@echo "... MQTTRouterPing.s"
+	@echo "... MQTTTopicHelper.obj"
+	@echo "... MQTTTopicHelper.i"
+	@echo "... MQTTTopicHelper.s"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.obj"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.i"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.s"

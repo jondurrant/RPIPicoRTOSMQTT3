@@ -3751,6 +3751,8 @@ src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../lib/lwesp/lwesp/src/include/lw
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../lib/lwesp/lwesp/src/include/lwesp/lwesp_wps.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../lib/lwesp/lwesp/src/include/system/lwesp_sys.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/port/FreeRTOS/FreeRTOSConfig.h
+src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/port/FreeRTOS/logging_levels.h
+src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/port/FreeRTOS/logging_stack.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/port/lwesp/lwesp_sys_port.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: /home/piadmin/pico/pico-sdk/src/boards/include/boards/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico.h
@@ -3781,15 +3783,13 @@ src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: /home/piadmin/pico/pico-sdk/src/r
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTAgent.cpp
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTAgent.h
-src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTDebug.h
+src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTConfig.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTInterface.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTRouter.h
+src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTTopicHelper.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: custom_inc/lwesp_opts.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: generated/pico_base/pico/config_autogen.h
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: generated/pico_base/pico/version.h
-
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj: ../src/MQTTDebug.cpp
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj: ../src/MQTTDebug.h
 
 src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj: /home/piadmin/pico/pico-sdk/src/boards/include/boards/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico.h
@@ -3839,6 +3839,8 @@ src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../lib/FreeRTOS-Kernel/portabl
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../lib/FreeRTOS-Kernel/portable/GCC/ATMega323/portmacro.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../lib/FreeRTOS-Kernel/portable/IAR/ATMega323/portmacro.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/port/FreeRTOS/FreeRTOSConfig.h
+src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/port/FreeRTOS/logging_levels.h
+src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/port/FreeRTOS/logging_stack.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/boards/include/boards/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico/assert.h
@@ -3866,7 +3868,7 @@ src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/sr
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_platform/include/pico/platform.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h
-src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTDebug.h
+src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTConfig.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTInterface.h
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTPingTask.cpp
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTPingTask.h
@@ -3922,6 +3924,8 @@ src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../lib/FreeRTOS-Kernel/porta
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../lib/FreeRTOS-Kernel/portable/GCC/ATMega323/portmacro.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../lib/FreeRTOS-Kernel/portable/IAR/ATMega323/portmacro.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/port/FreeRTOS/FreeRTOSConfig.h
+src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/port/FreeRTOS/logging_levels.h
+src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/port/FreeRTOS/logging_stack.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/boards/include/boards/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico/assert.h
@@ -3949,14 +3953,18 @@ src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_platform/include/pico/platform.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio/include/pico/stdio.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h
-src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTDebug.h
+src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTConfig.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTInterface.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTPingTask.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTRouter.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTRouterPing.cpp
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTRouterPing.h
+src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTTopicHelper.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: generated/pico_base/pico/config_autogen.h
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: generated/pico_base/pico/version.h
+
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj: ../src/MQTTTopicHelper.cpp
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj: ../src/MQTTTopicHelper.h
 
 src/CMakeFiles/PicoMQTT.dir/home/piadmin/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp
 
@@ -4001,6 +4009,8 @@ src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../lib/lwesp/lwesp/src/include/lwesp/l
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../lib/lwesp/lwesp/src/include/lwesp/lwesp_wps.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../lib/lwesp/lwesp/src/include/system/lwesp_sys.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/port/FreeRTOS/FreeRTOSConfig.h
+src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/port/FreeRTOS/logging_levels.h
+src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/port/FreeRTOS/logging_stack.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/port/lwesp/lwesp_sys_port.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: /home/piadmin/pico/pico-sdk/src/boards/include/boards/pico.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: /home/piadmin/pico/pico-sdk/src/common/pico_base/include/pico.h
@@ -4031,6 +4041,7 @@ src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_co
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/stdio_usb.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/Credentials.env
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/MQTTAgent.h
+src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/MQTTConfig.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/MQTTInterface.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/MQTTPingTask.h
 src/CMakeFiles/PicoMQTT.dir/main.cpp.obj: ../src/MQTTRouter.h

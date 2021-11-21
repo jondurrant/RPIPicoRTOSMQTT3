@@ -5,30 +5,61 @@
  *      Author: jondurrant
  */
 
-#include "MQTTRouterPing.h"
 #include <stdio.h>
 #include <cstring>
 
+#include "MQTTRouterPing.h"
+#include "MQTTTopicHelper.h"
 
-#include "MQTTDebug.h"
 
-const char * MQTTRouterPing::PINGTOPIC = "TNG/%s/TPC/PING";
-const char * MQTTRouterPing::PONGTOPIC = "TNG/%s/TPC/PONG";
+#define PING "PING"
+#define PONG "PONG"
 
+
+/***
+ * Constructor
+ */
 MQTTRouterPing::MQTTRouterPing() {
 }
 
+/***
+ * Constructor providing Id for the Thing and MQTT Interface
+ * @param id - string ID of the thing
+ * @param mi - MQTT Interface
+ */
 MQTTRouterPing::MQTTRouterPing(const char * id, MQTTInterface *mi) {
 	init(id, mi);
 }
 
+/***
+ * Initialise the object give the Id and MQTT Interface
+ * @param id = string ID of the Thing
+ * @param mi = MQTT Interface
+ */
 void MQTTRouterPing::init(const char * id, MQTTInterface *mi) {
 	this->id = id;
 
-	sprintf(pingTopic, PINGTOPIC, id);
-	sprintf(pongTopic, PONGTOPIC, id);
+	if (pingTopic == NULL){
+		pingTopic = (char *)pvPortMalloc(
+				MQTTTopicHelper::lenThingTopic(this->id, PING)
+				);
+		if (pingTopic != NULL){
+			MQTTTopicHelper::genThingTopic(pingTopic, this->id, PING);
+		} else {
+			LogError( ("Unable to allocate PING topic") );
+		}
+	}
 
-	subscriptions[ 0 ] = pingTopic;
+	if (pongTopic == NULL){
+		pongTopic = (char *)pvPortMalloc(
+				MQTTTopicHelper::lenThingTopic(this->id, PONG)
+				);
+		if (pongTopic != NULL){
+			MQTTTopicHelper::genThingTopic(pongTopic, this->id, PONG);
+		} else {
+			LogError( ("Unable to allocate PONG topic") );
+		}
+	}
 
 	pingTask.setPongTopic(pongTopic);
 	pingTask.setInterface(mi);
@@ -36,23 +67,33 @@ void MQTTRouterPing::init(const char * id, MQTTInterface *mi) {
 
 }
 
+/***
+ * Destructor
+ */
 MQTTRouterPing::~MQTTRouterPing() {
-	// TODO Auto-generated destructor stub
+	if (pingTopic != NULL){
+		vPortFree(pingTopic);
+		pingTopic = NULL;
+	}
+	if (pongTopic != NULL){
+		vPortFree(pongTopic);
+		pongTopic = NULL;
+	}
 }
 
-char ** MQTTRouterPing::getSubscriptionList(){
-	return subscriptions;
 
-}
-
-
-size_t MQTTRouterPing::getSubscriptionCount(){
-	return SUBSCRIPTIONS;
-}
-
+/***
+ * Route the message the appropriate part of the application
+ * @param topic
+ * @param topicLen
+ * @param payload
+ * @param payloadLen
+ * @param interface
+ */
 void MQTTRouterPing::route(const char *topic, size_t topicLen, const void * payload, size_t payloadLen, MQTTInterface *interface){
 
-	dbg("MQTTRouterPing(%.*s[%d]: %.*s[%d])\n",topicLen, topic, topicLen, payloadLen, (char *)payload, payloadLen);
+	LogDebug( ("MQTTRouterPing(%.*s[%d]: %.*s[%d])\n",topicLen,
+			topic, topicLen, payloadLen, (char *)payload, payloadLen) );
 	if (strlen(pingTopic) == topicLen){
 		if (memcmp(topic, pingTopic, topicLen)==0){
 
@@ -64,6 +105,10 @@ void MQTTRouterPing::route(const char *topic, size_t topicLen, const void * payl
 	}
 }
 
+/***
+ * Use the interface to setup all the subscriptions
+ * @param interface
+ */
 void MQTTRouterPing::subscribe(MQTTInterface *interface){
 
 	interface->subToTopic(pingTopic, 1);

@@ -2,7 +2,7 @@
  * MQTTRouter.h
  *
  * Abstract router interface.
- * Defines iterface for MQTTTask to get messages handled by application
+ * Defines interface for MQTTTask to get messages handled by application
  *
  *  Created on: 31 Oct 2021
  *      Author: jondurrant
@@ -19,20 +19,11 @@ public:
 	MQTTRouter();
 	virtual ~MQTTRouter();
 
+
 	/***
-	 * Return the list of topics to subscribe to.
-	 * this only gets setup once and is static
-	 * @return
+	 * Use interface to set subscriptions for the router
+	 * @param interface
 	 */
-	 virtual char ** getSubscriptionList()=0;
-
-	 /***
-	  * Returns the number of topics in the subscription list
-	  * @return
-	  */
-	 virtual size_t getSubscriptionCount()=0;
-
-
 	 virtual void subscribe(MQTTInterface *interface)=0;
 
 

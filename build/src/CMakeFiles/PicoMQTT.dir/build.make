@@ -70,22 +70,9 @@ src/CMakeFiles/PicoMQTT.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PicoMQTT.dir/main.cpp.s"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/pidev/src/RPIPicoRTOSMQTT3/src/main.cpp -o CMakeFiles/PicoMQTT.dir/main.cpp.s
 
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj: ../src/MQTTDebug.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj"
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.cpp
-
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.i"
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.cpp > CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.i
-
-src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.s"
-	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTDebug.cpp -o CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.s
-
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj: ../src/MQTTAgent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.cpp
 
 src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.i: cmake_force
@@ -98,7 +85,7 @@ src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.s: cmake_force
 
 src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj: ../src/MQTTInterface.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTInterface.cpp
 
 src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.i: cmake_force
@@ -111,7 +98,7 @@ src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.s: cmake_force
 
 src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj: ../src/MQTTRouter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouter.cpp
 
 src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.i: cmake_force
@@ -124,7 +111,7 @@ src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.s: cmake_force
 
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj: ../src/MQTTRouterPing.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.cpp
 
 src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.i: cmake_force
@@ -137,7 +124,7 @@ src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.s: cmake_force
 
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj: ../src/MQTTPingTask.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.cpp
 
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.i: cmake_force
@@ -147,6 +134,19 @@ src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.i: cmake_force
 src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.s"
 	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.cpp -o CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.s
+
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj: ../src/MQTTTopicHelper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/pidev/src/RPIPicoRTOSMQTT3/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj"
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj -c /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.cpp
+
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.i"
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.cpp > CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.i
+
+src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.s"
+	cd /mnt/pidev/src/RPIPicoRTOSMQTT3/build/src && /usr/bin/arm-none-eabi-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.cpp -o CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.s
 
 src/CMakeFiles/PicoMQTT.dir/port/FreeRTOS/IdleMemory.c.obj: src/CMakeFiles/PicoMQTT.dir/flags.make
 src/CMakeFiles/PicoMQTT.dir/port/FreeRTOS/IdleMemory.c.obj: ../src/port/FreeRTOS/IdleMemory.c
@@ -1506,12 +1506,12 @@ src/CMakeFiles/PicoMQTT.dir/__/lib/lwesp/lwesp/src/apps/mqtt/lwesp_mqtt_client_e
 # Object files for target PicoMQTT
 PicoMQTT_OBJECTS = \
 "CMakeFiles/PicoMQTT.dir/main.cpp.obj" \
-"CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj" \
+"CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj" \
 "CMakeFiles/PicoMQTT.dir/port/FreeRTOS/IdleMemory.c.obj" \
 "CMakeFiles/PicoMQTT.dir/port/lwesp/lwesp_sys_freertos.c.obj" \
 "CMakeFiles/PicoMQTT.dir/port/lwesp/lwesp_ll_raspberry_pi_pico.c.obj" \
@@ -1628,12 +1628,12 @@ PicoMQTT_OBJECTS = \
 PicoMQTT_EXTERNAL_OBJECTS =
 
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/main.cpp.obj
-src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTDebug.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTAgent.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTInterface.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTRouter.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTRouterPing.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTPingTask.cpp.obj
+src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/MQTTTopicHelper.cpp.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/port/FreeRTOS/IdleMemory.c.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/port/lwesp/lwesp_sys_freertos.c.obj
 src/PicoMQTT.elf: src/CMakeFiles/PicoMQTT.dir/port/lwesp/lwesp_ll_raspberry_pi_pico.c.obj

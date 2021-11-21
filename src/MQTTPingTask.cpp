@@ -6,21 +6,34 @@
  */
 
 #include "MQTTPingTask.h"
-#include "MQTTDebug.h"
 
+/***
+* Constructor
+*/
 MQTTPingTask::MQTTPingTask() {
-	// TODO Auto-generated constructor stub
+	// NOP
 
 }
 
+/***
+ * Destructor
+ */
 MQTTPingTask::~MQTTPingTask() {
-	// TODO Auto-generated destructor stub
+	stop();
 }
 
+/***
+ * Set the MQTT Interface
+ * @param mi - MQTTIntercace, an MQTTAgent object
+ */
 void MQTTPingTask::setInterface(MQTTInterface * mi){
 	mqttInterface = mi;
 }
 
+/***
+* Set the response topic
+* @param topic = string
+*/
 void MQTTPingTask::setPongTopic(char * topic){
 	pongTopic = topic;
 }
@@ -32,7 +45,7 @@ void MQTTPingTask::setPongTopic(char * topic){
 void MQTTPingTask::start(UBaseType_t priority){
 	xMessageBuffer = xMessageBufferCreate( PINGBUFFER );
 	if (xMessageBuffer == NULL){
-		dbg("ERROR No MQTTPingTask PINGBUFFER");
+		LogError( ("No MQTTPingTask PINGBUFFER") );
 		return;
 	}
 	if (xMessageBuffer != NULL){
@@ -48,6 +61,21 @@ void MQTTPingTask::start(UBaseType_t priority){
 }
 
 /***
+* Stop the vtask
+*/
+void MQTTPingTask::stop(){
+	if (xHandle != NULL){
+		vTaskDelete(  xHandle );
+		xHandle = NULL;
+	}
+
+	if (xMessageBuffer != NULL){
+		vMessageBufferDelete(xMessageBuffer);
+		xMessageBuffer = NULL;
+	}
+}
+
+/***
  * Internal function used by FreeRTOS to run the task
  * @param pvParameters
  */
@@ -56,18 +84,26 @@ void MQTTPingTask::vTask( void * pvParameters ){
 	task->run();
 }
 
-
+/***
+* Add a ping request to the queue
+* @param payload
+* @param payloadLen
+* @return
+*/
 bool MQTTPingTask::addPing(const void * payload, size_t payloadLen){
 	size_t res = xMessageBufferSend(xMessageBuffer,
 			payload, payloadLen, 0 );
 	if (res != payloadLen){
-		dbg("ERROR  MQTTPingTask::addPing failed\n");
+		LogError( ("MQTTPingTask::addPing failed\n") );
 		return false;
 	}
 	return true;
 }
 
 
+/***
+* Internal function to run the task from within the object
+*/
 void MQTTPingTask::run(){
 	char payload[MAXPINGPAYLOAD];
 	for (;;){
@@ -81,7 +117,7 @@ void MQTTPingTask::run(){
 				if ((pongTopic != NULL) && (mqttInterface != NULL)){
 					mqttInterface->pubToTopic(pongTopic, payload, size);
 				} else {
-					dbg("MQTTPingTask interface or topic not set");
+					LogError( ("MQTTPingTask interface or topic not set") );
 				}
 			}
 		}
