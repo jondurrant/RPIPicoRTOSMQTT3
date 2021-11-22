@@ -23,14 +23,16 @@ MQTTTopicHelper::~MQTTTopicHelper() {
 /***
  * Get length of the lifecycle topic, to allow dynamic creation of string
  * @param id
+ * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
  * @return
  */
-size_t MQTTTopicHelper::lenLifeCycleTopic(const char *id){
+size_t MQTTTopicHelper::lenLifeCycleTopic(const char *id, const char *name){
 	size_t res = 0;
 	res = strlen(MQTT_TOPIC_THING_HEADER) +
 		  strlen(MQTT_TOPIC_LIFECYCLE) +
 		  strlen(id) +
-		  3;
+		  strlen(name) +
+		  4;
 	return res;
 }
 
@@ -38,10 +40,11 @@ size_t MQTTTopicHelper::lenLifeCycleTopic(const char *id){
  * generate the lifecycle topic for thing
  * @param topic - out to write the topic
  * @param id - id of the thing
+ * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
  */
-void  MQTTTopicHelper::genLifeCycleTopic(char *topic, const char *id){
-	sprintf(topic, "%s/%s/%s",MQTT_TOPIC_THING_HEADER, id,
-			MQTT_TOPIC_LIFECYCLE  );
+void  MQTTTopicHelper::genLifeCycleTopic(char *topic, const char *id, const char *name){
+	sprintf(topic, "%s/%s/%s/%s",MQTT_TOPIC_THING_HEADER, id,
+			MQTT_TOPIC_LIFECYCLE, name  );
 
 }
 

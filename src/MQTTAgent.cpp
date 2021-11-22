@@ -37,6 +37,16 @@ MQTTAgent::~MQTTAgent() {
 		willTopic = NULL;
 	}
 
+	if (onlineTopic != NULL){
+		vPortFree(onlineTopic);
+		onlineTopic = NULL;
+	}
+
+	if (keepAliveTopic != NULL){
+		vPortFree(keepAliveTopic);
+		keepAliveTopic = NULL;
+	}
+
 }
 
 /***
@@ -91,9 +101,27 @@ void MQTTAgent::credentials(const char * user, const char * passwd, const char *
 	}
 
 	if (willTopic == NULL){
-		willTopic = (char *)pvPortMalloc( MQTTTopicHelper::lenLifeCycleTopic(this->id));
+		willTopic = (char *)pvPortMalloc( MQTTTopicHelper::lenLifeCycleTopic(this->id, MQTT_TOPIC_LIFECYCLE_OFFLINE));
 		if (willTopic != NULL){
-			MQTTTopicHelper::genLifeCycleTopic(willTopic, this->id);
+			MQTTTopicHelper::genLifeCycleTopic(willTopic, this->id, MQTT_TOPIC_LIFECYCLE_OFFLINE);
+		} else {
+			LogError( ("Unable to allocate LC topic") );
+		}
+	}
+
+	if (onlineTopic == NULL){
+		onlineTopic = (char *)pvPortMalloc( MQTTTopicHelper::lenLifeCycleTopic(this->id, MQTT_TOPIC_LIFECYCLE_ONLINE));
+		if (onlineTopic != NULL){
+			MQTTTopicHelper::genLifeCycleTopic(onlineTopic, this->id, MQTT_TOPIC_LIFECYCLE_ONLINE);
+		} else {
+			LogError( ("Unable to allocate LC topic") );
+		}
+	}
+
+	if (keepAliveTopic == NULL){
+		keepAliveTopic = (char *)pvPortMalloc( MQTTTopicHelper::lenLifeCycleTopic(this->id, MQTT_TOPIC_LIFECYCLE_KEEP_ALIVE));
+		if (keepAliveTopic != NULL){
+			MQTTTopicHelper::genLifeCycleTopic(keepAliveTopic, this->id, MQTT_TOPIC_LIFECYCLE_KEEP_ALIVE);
 		} else {
 			LogError( ("Unable to allocate LC topic") );
 		}
@@ -108,9 +136,10 @@ void MQTTAgent::credentials(const char * user, const char * passwd, const char *
  * @param ssl - unused
  * @return
  */
-bool MQTTAgent::connect(char * target, lwesp_port_t  port, bool ssl){
+bool MQTTAgent::connect(char * target, lwesp_port_t  port, bool recon){
 	this->target = target;
 	this->port = port;
+	this->recon = recon;
 	connState = MQTTConn;
 	return true;
 }
@@ -163,7 +192,7 @@ void MQTTAgent::start(UBaseType_t priority){
 			 break;
 		 }
 		 case MQTTConned: {
-			 pubToTopic(willTopic, ONLINEPAYLOAD, strlen(ONLINEPAYLOAD));
+			 pubToTopic(onlineTopic, ONLINEPAYLOAD, strlen(ONLINEPAYLOAD), 1);
 			 mqttSub();
 			 connState = Online;
 			 break;
@@ -206,12 +235,32 @@ const char * MQTTAgent::getId(){
 * @param payload - payload as pointer to memory block
 * @param payloadLen - length of memory block
 */
-bool MQTTAgent::pubToTopic(const char * topic, const void * payload, size_t payloadLen){
+bool MQTTAgent::pubToTopic(const char * topic, const void * payload,
+		size_t payloadLen, const uint8_t QoS){
 
 	lwespr_t status;
+	lwesp_mqtt_qos_t q;
+	switch (QoS){
+	case 0:{
+		q = LWESP_MQTT_QOS_AT_MOST_ONCE;
+		break;
+	}
+	case 1:{
+		q = LWESP_MQTT_QOS_AT_LEAST_ONCE;
+		break;
+	}
+	case 2:{
+		q = LWESP_MQTT_QOS_EXACTLY_ONCE;
+		break;
+	}
+	default:{
+		q = LWESP_MQTT_QOS_AT_MOST_ONCE;
+		break;
+	}
+	}
 	LogDebug( ("Publish to: %s \n", topic ));
 	status = lwesp_mqtt_client_api_publish(pMQTTClient, topic,
-			payload, payloadLen, LWESP_MQTT_QOS_AT_LEAST_ONCE, false);
+			payload, payloadLen, q, false);
 	return (status == lwespOK);
 }
 
@@ -264,7 +313,7 @@ bool MQTTAgent::mqttConn(){
 	xMqttClientInfo.id = id;
 	xMqttClientInfo.user = user;
 	xMqttClientInfo.pass = passwd;
-	xMqttClientInfo.keep_alive = 10;
+	xMqttClientInfo.keep_alive = MQTT_KEEP_ALIVE;
 	xMqttClientInfo.will_topic = willTopic;
 	xMqttClientInfo.will_message = WILLPAYLOAD;
 	xMqttClientInfo.will_qos = LWESP_MQTT_QOS_AT_LEAST_ONCE;
@@ -278,6 +327,9 @@ bool MQTTAgent::mqttConn(){
 		connState = Offline;
 		//printf("MQTT Connect Failed: %d\r\n", (int)conn_status);
 		LogError( ("MQTT Connect Failed %d\n", (int)conn_status ));
+		if (recon){
+			connState = MQTTRecon;
+		}
 		return false;
 	}
 	return true;
@@ -349,11 +401,16 @@ bool MQTTAgent::mqttRec(){
 		}
 	} else if (res == lwespCLOSED) {
 		LogWarn( ("MQTT connection closed!\r\n") );
-		connState = Offline;
+		if (recon){
+			LogDebug( ("Reconnect") );
+			connState = MQTTRecon;
+		} else {
+			connState = Offline;
+		}
 		return false;
 	} else if (res == lwespTIMEOUT) {
-		LogWarn( ("Timeout on MQTT receive function. Manually publishing.\r\n") );
-		pubToTopic(willTopic, ONLINEPAYLOAD, strlen(ONLINEPAYLOAD));
+		LogDebug( ("Timeout on MQTT receive function. Manually publishing.\r\n") );
+		pubToTopic(keepAliveTopic, ONLINEPAYLOAD, strlen(ONLINEPAYLOAD), 1);
 	}
 	return true;
 }

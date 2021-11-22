@@ -10,10 +10,10 @@ user = "mbp"
 passwd = "test"
 
 ping_topic = "TNG/" + targetId + "/TPC/PING"
-connected_topic = "TNG/" + user + "/LC"
+connected_topic = "TNG/" + user + "/LC/ON"
 
 pong_topic = "TNG/" + targetId + "/TPC/PONG"
-lc_topic = "TNG/" + targetId + "/LC"
+lc_topic = "TNG/" + targetId + "/LC/#"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -52,7 +52,7 @@ infot = client.publish(connected_topic,p,retain=False,qos=1)
 infot.wait_for_publish()
 
 pingId = 0;
-for i in range(30):
+for i in range(10):
     j = {'id': pingId}
     p = json.dumps(j)
     print("Publishing ping %s"%p)

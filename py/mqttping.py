@@ -10,10 +10,10 @@ user = "mbp"
 passwd = "test"
 
 ping_topic = "TNG/" + targetId + "/TPC/PING"
-connected_topic = "TNG/" + user + "/LC"
+connected_topic = "TNG/" + user + "/LC/ON"
 
 pong_topic = "TNG/" + targetId + "/TPC/PONG"
-lc_topic = "TNG/" + targetId + "/LC"
+lc_topic = "TNG/" + targetId + "/LC/#"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):

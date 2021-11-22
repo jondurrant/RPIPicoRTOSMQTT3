@@ -10,10 +10,10 @@ user = "mbp"
 passwd = "test"
 
 ping_topic = "TNG/" + targetId + "/TPC/PING"
-connected_topic = "TNG/" + user + "/LC"
+connected_topic = "TNG/" + user + "/LC/ON"
 
 pong_topic = "TNG/" + targetId + "/TPC/PONG"
-lc_topic = "TNG/" + targetId + "/LC"
+lc_topic = "TNG/" + targetId + "/LC/#"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -58,8 +58,5 @@ for i in range(1):
     pingId = pingId + 1
     time.sleep(0.1)
 
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
-client.loop_forever()
+
+time.sleep(30)

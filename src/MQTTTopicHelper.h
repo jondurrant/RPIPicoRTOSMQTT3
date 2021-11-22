@@ -8,10 +8,29 @@
 #ifndef MQTTTOPICHELPER_H_
 #define MQTTTOPICHELPER_H_
 
+#ifndef MQTT_TOPIC_THING_HEADER
 #define MQTT_TOPIC_THING_HEADER "TNG"
+#endif
+#ifndef MQTT_TOPIC_HEADER
 #define MQTT_TOPIC_HEADER "TPC"
+#endif
+#ifndef MQTT_TOPIC_LIFECYCLE
 #define MQTT_TOPIC_LIFECYCLE "LC"
+#endif
+#ifndef MQTT_TOPIC_GROUP_HEADER
 #define MQTT_TOPIC_GROUP_HEADER "GRP"
+#endif
+
+
+#ifndef MQTT_TOPIC_LIFECYCLE_OFFLINE
+#define MQTT_TOPIC_LIFECYCLE_OFFLINE "OFF"
+#endif
+#ifndef MQTT_TOPIC_LIFECYCLE_ONLINE
+#define MQTT_TOPIC_LIFECYCLE_ONLINE "ON"
+#endif
+#ifndef MQTT_TOPIC_LIFECYCLE_KEEP_ALIVE
+#define MQTT_TOPIC_LIFECYCLE_KEEP_ALIVE "KEEP"
+#endif
 
 
 #include <stdlib.h>
@@ -29,17 +48,19 @@ public:
 
 	/***
 	 * Get length of the lifecycle topic, to allow dynamic creation of string
-	 * @param id
+	 * @param id = think ID
+	 * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
 	 * @return
 	 */
-	static size_t lenLifeCycleTopic(const char *id);
+	static size_t lenLifeCycleTopic(const char *id, const char *name);
 
 	/***
 	 * generate the lifecycle topic for thing
 	 * @param topic - out to write the topic
 	 * @param id - id of the thing
+	 * @param name  = name of the lifecycle topic (ON, OFF, KEEP)
 	 */
-	static void  genLifeCycleTopic(char *topic, const char *id);
+	static void  genLifeCycleTopic(char *topic, const char *id, const char *name);
 
 	/***
 	 * Get length of the thing topic, under the ID in structure

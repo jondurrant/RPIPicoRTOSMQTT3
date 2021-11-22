@@ -66,7 +66,7 @@ void startMQTT(){
 	mqttRouter.init(mqttAgent.getId(), &mqttAgent);
 	mqttAgent.setRouter(&mqttRouter);
 	mqttAgent.start(tskIDLE_PRIORITY+1);
-	mqttAgent.connect(mqttTarget, mqttPort);
+	mqttAgent.connect(mqttTarget, mqttPort, true);
 
 
 	/*

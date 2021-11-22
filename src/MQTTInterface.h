@@ -29,9 +29,10 @@ public:
 	 * @param topic - zero terminated string. Copied by function
 	 * @param payload - payload as pointer to memory block
 	 * @param payloadLen - length of memory block
+	 * @param QoS, QoS level of publish (0-2)
 	 */
-	virtual bool pubToTopic(const char * topic, const void * payload, size_t payloadLen)=0;
-
+	virtual bool pubToTopic(const char * topic, const void * payload,
+			size_t payloadLen, const uint8_t QoS=0)=0;
 	/***
 	 * Subscribe to a topic, mesg will be sent to router object
 	 * @param topic

@@ -520,6 +520,8 @@ pico.h
 pico/stdio.h
 /home/piadmin/pico/pico-sdk/src/rp2_common/pico_stdio_usb/include/pico/pico/stdio.h
 
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/Credentials.env
+
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.cpp
 stdlib.h
 -
@@ -551,6 +553,10 @@ stdlib.h
 -
 pico/stdlib.h
 -
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.cpp
+MQTTPingTask.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.h
 
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTPingTask.h
 stdlib.h
@@ -605,6 +611,28 @@ cstring
 /mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTTopicHelper.h
 stdlib.h
 -
+
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/main.cpp
+stdio.h
+-
+pico/stdlib.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/pico/stdlib.h
+FreeRTOS.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/FreeRTOS.h
+task.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/task.h
+array
+-
+lwesp/lwesp.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/lwesp/lwesp.h
+lwesp/apps/lwesp_mqtt_client_api.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/lwesp/apps/lwesp_mqtt_client_api.h
+Credentials.env
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/Credentials.env
+MQTTAgent.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTAgent.h
+MQTTRouterPing.h
+/mnt/pidev/src/RPIPicoRTOSMQTT3/src/MQTTRouterPing.h
 
 custom_inc/lwesp_opts.h
 

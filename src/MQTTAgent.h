@@ -21,6 +21,10 @@
 #define MQTT_RECON_DELAY 3000
 #endif
 
+#ifndef MQTT_KEEP_ALIVE
+#define MQTT_KEEP_ALIVE 10
+#endif
+
 
 enum MQTTState {  Offline, MQTTConn, MQTTRecon, MQTTConned, Online};
 
@@ -52,10 +56,10 @@ public:
 	 * Connect to mqtt server
 	 * @param target - hostname or ip address, Not copied so pointer must remain valid
 	 * @param port - port number
-	 * @param ssl - unused
+	 * @param recon - reconnect on disconnect
 	 * @return
 	 */
-	 bool connect(char * target, lwesp_port_t  port, bool ssl=false);
+	 bool connect(char * target, lwesp_port_t  port, bool recon=false);
 
 	 /***
 	 *  create the vtask, will get picked up by scheduler
@@ -81,8 +85,10 @@ public:
 	 * @param topic - zero terminated string. Copied by function
 	 * @param payload - payload as pointer to memory block
 	 * @param payloadLen - length of memory block
+	 * @param QoS, QoS level of publish (0-2)
 	 */
-	virtual bool pubToTopic(const char * topic, const void * payload, size_t payloadLen);
+	virtual bool pubToTopic(const char * topic, const void * payload,
+			size_t payloadLen, const uint8_t QoS=0);
 
 	/***
 	 * Close connection
@@ -162,7 +168,7 @@ private:
 	const char * id;
 	const char * target = NULL;
 	lwesp_port_t port = 1883 ;
-	bool ssl = false;
+	bool recon = false;
 
 	//Router object used for message processing
 	MQTTRouter * pRouter = NULL;
@@ -177,7 +183,9 @@ private:
 	//static const char * WILLTOPICFORMAT;
 	char *willTopic = NULL;
 	static const char * WILLPAYLOAD;
+	char *onlineTopic = NULL;
 	static const char * ONLINEPAYLOAD;
+	char *keepAliveTopic = NULL;
 
 	// MQTT Client handles and buffer sizes
 	lwesp_mqtt_client_api_p pMQTTClient = NULL;
